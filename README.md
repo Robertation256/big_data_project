@@ -128,7 +128,7 @@ Analyze topics of all reviews as well as reviews of good (rating = 1 - 2.5) and 
 
      ![image-20211121110630835](./screenshots/readme_pics/image-20211121110630835.png)
 
-   - input file path
+   - input file path (output from the data cleaning process above)
 
      ![image-20211121110605109](./screenshots/readme_pics/image-20211121110605109.png)
 
