@@ -37,12 +37,21 @@ public class CleanReducer extends Reducer<Text, Text, NullWritable, Text> {
                business_rating = BigDecimal.valueOf(jo.getDouble("stars")).floatValue();
             }
          }
+
+      Map<String,String> hash = new HashMap<String, String>();
+      hash.put("review_id",reviewId);
+      hash.put("business_id",businessId);
+      hash.put("review_rating",review_rating.toString());
+      hash.put("business_rating",business_rating.toString());
+      hash.put("review_text",review_text);
+      JSONObject newObj = new JSONObject(hash);
+
          
             
                 
       
 
-      Text result = new Text(String.format("%s|%s|%s|%s|%s", reviewId, businessId, review_rating.toString(), business_rating.toString(), review_text));
+      Text result = new Text(newObj.toString());
       context.write(NullWritable.get(), result);
    }
 }
