@@ -46,7 +46,7 @@ hadoop jar clean.jar Clean {path of your original dataset on hdfs} {your desired
 
 1. In your working directory, make sure your you have "/etl_code/yz3919/*.java" and "ana_code/org"
 
-   ![image-20211121103521042](.\screenshots\readme_pics\image-20211121103521042.png)
+   ![image-20211121103521042](./screenshots/readme_pics/image-20211121103521042.png)
 
 2. Do
 
@@ -102,7 +102,7 @@ hadoop jar profile.jar Profile {path of your original dataset on hdfs} {your des
 
 3.  Output shows the distribution of ratings
 
-   ![image-20211121104834286](.\screenshots\readme_pics\image-20211121104834286.png)
+   ![image-20211121104834286](./screenshots/readme_pics/image-20211121104834286.png)
 
 
 
@@ -126,12 +126,13 @@ Analyze topics of all reviews as well as reviews of good (rating = 1 - 2.5) and 
 
    - stop word file path
 
-     ![image-20211121110630835](.\screenshots\readme_pics\image-20211121110630835.png)
+     ![image-20211121110630835](./screenshots/readme_pics/image-20211121110630835.png)
 
    - input file path
 
-     ![image-20211121110605109](.\screenshots\readme_pics\image-20211121110605109.png)
+     ![image-20211121110605109](./screenshots/readme_pics/image-20211121110605109.png)
 
 4. Select all code in topic_extraction.sc and copy paste into shell. (When the last print command is reached, you may hit enter to run it)
 
 5. Outputs are printed directly in the sequence of all reviews topics, good business review topics and bad business review topics.
+
