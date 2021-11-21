@@ -16,6 +16,7 @@ public class ProfileReducer extends Reducer<Text, IntWritable, Text, IntWritable
    @Override
    public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
 
+      // add up the total number of review with a certain rating
       int sum = 0;
       for (IntWritable i: values){
          sum += i.get();

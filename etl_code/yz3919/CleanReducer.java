@@ -10,9 +10,9 @@ public class CleanReducer extends Reducer<Text, Text, NullWritable, Text> {
 
 
 /*
-* map json file to destination format
-* review_id | business_id | review_rating | business_rating | review_text
-* join the review records with business records using the business_id
+* join business.json records with review.json records using the business_id field
+* extract review_id, business_id, review_rating, business_rating, review_text 
+* 
 */
  
    @Override
@@ -27,6 +27,7 @@ public class CleanReducer extends Reducer<Text, Text, NullWritable, Text> {
       for (Text t:values){
          
             JSONObject jo = new JSONObject(t.toString());
+            // handling review.json
             if (jo.length()==9){
                reviewId = jo.getString("review_id");
                businessId = jo.getString("business_id");
@@ -34,10 +35,12 @@ public class CleanReducer extends Reducer<Text, Text, NullWritable, Text> {
                review_rating = BigDecimal.valueOf(jo.getDouble("stars")).floatValue();
             }
             else {
+               //handling business.json
                business_rating = BigDecimal.valueOf(jo.getDouble("stars")).floatValue();
             }
          }
 
+      //map everything to a new JSON object
       Map<String,String> hash = new HashMap<String, String>();
       hash.put("review_id",reviewId);
       hash.put("business_id",businessId);
@@ -46,11 +49,7 @@ public class CleanReducer extends Reducer<Text, Text, NullWritable, Text> {
       hash.put("review_text",review_text);
       JSONObject newObj = new JSONObject(hash);
 
-         
-            
-                
-      
-
+      // write out JSON
       Text result = new Text(newObj.toString());
       context.write(NullWritable.get(), result);
    }

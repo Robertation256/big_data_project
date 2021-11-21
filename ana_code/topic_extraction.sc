@@ -14,16 +14,12 @@ import org.apache.spark.mllib.linalg.Vectors
 val sqlctx = new SQLContext(sc)
 
 
-// read in from processed json file
-
-
+// read in from cleaned json file
 val df = sqlctx.read.json("hdfs:///user/yz3919/project/cleaned_data/part-r-00000")
 
 
 //tokenize the text
-
 val tokenizer = new RegexTokenizer().setPattern("[\\W_]+").setMinTokenLength(4).setInputCol("review_text").setOutputCol("tokens")
-
 val tokenized_df = tokenizer.transform(df)
 
 //remove stop words
@@ -45,7 +41,7 @@ val high_rating_df = all_rating_df.filter("business_rating >= 4.5")
 val low_rating_df = all_rating_df.filter("business_rating <= 2.5")
 
 
-//val df_with_id = filtered_df.withColumn("id", monotonically_increasing_id)
+
 
 val all_rating_vectorizer = new CountVectorizer().setInputCol("filtered_tokens").setOutputCol("features").setVocabSize(10000).setMinDF(5).fit(all_rating_df)
 val high_rating_vectorizer = new CountVectorizer().setInputCol("filtered_tokens").setOutputCol("features").setVocabSize(10000).setMinDF(5).fit(high_rating_df)
