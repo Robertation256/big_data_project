@@ -11,10 +11,10 @@ This project analyzes the public dataset provided by [Yelp](https://www.yelp.com
 
 **/ana_code**
 
-- clean.jar: MapReduce job for cleaning the yelp dataset
-- profile.jar: MapReduce job for analyzing the distribution of ratings
-- topic_extraction.sc: Scala commands to be run in Spark interactive shell for topic extraction
-- ./org: org.json, the package used for handling JSON file. You will need to have it if you want to compile the jars by yourself. 
+- /yz3919/clean.jar: MapReduce job for cleaning the yelp dataset
+- /yz3919/profile.jar: MapReduce job for analyzing the distribution of ratings
+- /yz3919/topic_extraction.sc: Scala commands to be run in Spark interactive shell for topic extraction
+- /yz3919/org: org.json, the package used for handling JSON file. You will need to have it if you want to compile the jars by yourself. 
 - /bz1037_analytics/yelp_find_topic_reviews.sc: Pulls out reviews with Machine Learning extracted topics sorted by ratings. The screenshots of the program running can be found in Sceenshot/bz1037/Analytics. 
 - /bz1037_analytics/yelp_project.py: Conducts sentiment analysis on all reviews, computing a sentiment score for each review based on its positivity using TextBlob package. The sentiment score ranges from -1 to 1, with 1 being very positive and -1 being very negative. It is written in pyspark, and the result can also be found in Sceenshot/bz1037/Analytics. To run the program, simply copy and paste the code into Pyspark shell.
 
