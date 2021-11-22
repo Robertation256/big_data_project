@@ -9,9 +9,9 @@ This project analyzes the public dataset provided by [Yelp](https://www.yelp.com
 
 # Files and Directories
 
-**/ana_code**
+**/ana_code/yz3919**
 
-- clean.jar: MapReduce job for cleaning the yelp dataset
+- clean.jar: MapReduce job for cleaning the yelp dataset for topic extraction
 - profile.jar: MapReduce job for analyzing the distribution of ratings
 - topic_extraction.sc: Scala commands to be run in Spark interactive shell for topic extraction
 - ./org: org.json, the package used for handling JSON file. You will need to have it if you want to compile the jars by yourself. 
@@ -28,18 +28,18 @@ This project analyzes the public dataset provided by [Yelp](https://www.yelp.com
 
 - *.java: source code for profile.jar
 
-# How to Run
+# How to Run 
 
 ### Data Ingestion
 
 1. Download full dataset from [Yelp](https://www.yelp.com/dataset)
 2. Populate the data into HDFS (see /data_ingestion/commands.txt for detail commands)
 
-### Data Cleaning
+### Data Cleaning for Topic Extraction
 
 This MapReduce job extracts review.json and business.json from the aggregated dataset and join them using the "business_id" field. 
 
-- **You can directly run the clean.jar file by**
+- **You can directly run the clean.jar file at /ana_code/yz3919/clean.jar by**
 
 ```shell
 hadoop jar clean.jar Clean {path of your original dataset on hdfs} {your desired output path on hdfs}
@@ -71,11 +71,11 @@ hadoop jar clean.jar Clean {path of your original dataset on hdfs} {your desired
 
 3. Cleaned data is ready for use as input for topic extraction.
 
-### Data Profiling
+### Data Profiling for Finding the Distribution of Ratings
 
 This MapReduce job runs on the ORIGINAL Yelp dataset, not the cleaned one.
 
-- **You can directly run the profile.jar file by**
+- **You can directly run the profile.jar file at /ana_code/yz3919/profile.jar by**
 
 ```shell
 hadoop jar profile.jar Profile {path of your original Yelp dataset on hdfs} {your desired output path on hdfs}
@@ -115,7 +115,7 @@ hadoop jar profile.jar Profile {path of your original Yelp dataset on hdfs} {you
 
 Analyze topics of all reviews as well as reviews of good (rating = 1 - 2.5) and bad (rating = 4.5 - 5) businesses.
 
-This runs on the CLEANED data and not the original Yelp dataset.
+This runs on the CLEANED data output of /ana_code/yz3919/clean.jar and not the original Yelp dataset.
 
 1. Download a stop word file
 
@@ -129,7 +129,7 @@ This runs on the CLEANED data and not the original Yelp dataset.
    spark-shell --deploy-mode client
    ```
 
-3. Make sure you change the file paths to your own in *topic_extraction.sc*
+3. Make sure you change the file paths to the one in step1 in */ana_code/yz3919/topic_extraction.sc*
 
    - stop word file path
 
@@ -139,6 +139,7 @@ This runs on the CLEANED data and not the original Yelp dataset.
 
      ![image-20211121110605109](./screenshots/readme_pics/image-20211121110605109.png)
 
-4. Select all code in *topic_extraction.sc* and copy paste into shell. (When the last print command is reached, you may hit enter to run it)
+4. Select all code in */ana_code/yz3919/topic_extraction.sc* and copy paste into shell. (When the last print command is reached, you may hit enter to run it)
 
 5. Outputs are printed directly in the sequence of all reviews topics, good business review topics and bad business review topics.
+
